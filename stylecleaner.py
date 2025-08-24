@@ -6,6 +6,8 @@ def strip_styles(input_name, output_name):
     doc = Document(input_name)
     
     style_names = [s.name for s in doc.styles]
+    # For some reason deleting the 'Normal' style is precisely what makes it
+    # appear in the style gallery, where it can't be deleted, only hidden.
     bad_names = [n for n in style_names if n[0:2] != 'MS' and n != 'Normal']
     for n in bad_names:
         doc.styles[n].delete()
@@ -58,4 +60,5 @@ def gui():
 
 if __name__ == '__main__':
     gui()
+
 
